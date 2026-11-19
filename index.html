@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MathSpin Galaxy - Petualangan Kuis Matematika</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@600;800&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="planet p1"></div><div class="planet p2"></div>
+<div class="container">
+<header>
+<h1>🌌 MathSpin Galaxy</h1>
+<div class="subtitle">Putar roda, pecahkan misi, jadilah bintang matematika! ✨</div>
+</header>
+
+<!-- LAYAR AWAL -->
+<div class="panel center" id="start">
+<h2>🚀 Siap menjelajah galaksi?</h2>
+<p>10 soal tingkat sedang yang dibuat acak. Simbol yang ditunjuk panah menentukan jenis soalnya.</p>
+<p id="best1" style="font-weight:800;color:var(--mint)"></p>
+<button style="font-size:20px;padding:16px 32px;margin:8px 0 20px" onclick="startGame(1)">🎡 Mulai bermain</button>
+<div class="how">
+<div>🎡 <b>Putar roda.</b> Simbol yang ditunjuk panah menentukan jenis soal.</div>
+<div>⏱️ <b>Jawab tepat.</b> Kamu punya waktu 3 menit untuk tiap soal.</div>
+<div>🏅 <b>Skor maksimal 100.</b> Setiap jawaban benar bernilai 10 poin.</div>
+</div>
+</div>
+
+<!-- LAYAR GAME -->
+<div class="panel hidden" id="gamePanel">
+<div class="topbar">
+<div class="stat">⭐ Skor: <span id="score">0</span></div>
+<div class="stat">🔥 Streak: <span id="streak">0</span></div>
+<div class="stat">📝 Soal: <span id="number">1</span>/10</div>
+<div class="stat" id="levelStat">🚀 Sedang</div>
+</div>
+<div class="topbar">
+<button class="secondary" id="musicBtn" onclick="toggleMusic()">🎵 Musik: OFF</button>
+<button class="green" id="soundBtn" onclick="toggleSound()">🔊 Suara: ON</button>
+</div>
+<div class="progress"><div class="progress-fill" id="progress"></div></div>
+<div class="game-grid">
+<div class="wheel-area">
+<div class="pointer">▼</div>
+<div class="wheel-wrap" id="wrap"><div class="lights" id="lights"></div><div class="wheel" id="wheel"></div><div class="reveal" id="reveal"></div></div>
+<button id="spinBtn" onclick="spinWheel()">🎡 Putar roda!</button>
+<p id="wheelMessage">Putar roda untuk mendapatkan soal.</p>
+</div>
+<div>
+<h2>🚀 Misi matematika</h2>
+<span class="cat" id="cat">Menunggu putaran</span> <span class="cat" id="clock">⏱️ 3:00</span>
+<div class="timer"><i id="timeBar"></i></div>
+<div class="question" id="question">Siap memulai petualangan?</div>
+<div class="answers" id="answers"></div>
+<div class="feedback" id="feedback" aria-live="polite">Klik tombol putar roda untuk mulai.</div>
+<div class="controls">
+<button class="secondary" id="hintBtn" onclick="showHint()" disabled>💡 Petunjuk</button>
+<button class="green" id="nextBtn" onclick="nextQuestion()" disabled>Soal berikutnya ➜</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- HASIL -->
+<div class="panel hidden center" id="result">
+<h2 style="font-size:36px">🎉 Misi selesai!</h2>
+<div class="big-score" id="finalScore">0</div>
+<h3 id="rank"></h3>
+<p id="resultMessage"></p>
+<div class="facts">
+<div class="stat">✅ Benar: <span id="fCorrect"></span>/10</div>
+<div class="stat">🔥 Streak terbaik: <span id="fStreak"></span></div>
+<div class="stat">🏅 Skor tertinggi: <span id="fBest"></span></div>
+</div>
+<button onclick="startGame(lvl)">🚀 Main lagi</button>
+<button class="secondary" onclick="goMenu()">🏠 Menu utama</button>
+</div>
+
+<footer>Dibuat dengan 💜 untuk pecinta matematika | MathSpin Galaxy</footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

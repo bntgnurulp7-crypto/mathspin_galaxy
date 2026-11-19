@@ -1,0 +1,97 @@
+:root{--gold:#ffe27a;--pink:#ff8caa;--violet:#bba7ff;--mint:#91f0c5;--ink:#241a45;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100vh;font-family:'Nunito','Segoe UI',sans-serif;color:#fff;overflow-x:hidden;background:#171333;
+background-image:radial-gradient(circle at 12% 18%,#7354a8 0,transparent 32%),radial-gradient(circle at 88% 82%,#395c9c 0,transparent 36%),linear-gradient(135deg,#171333,#282052,#171a40);background-attachment:fixed}
+
+/* Dekorasi latar */
+.planet{position:fixed;border-radius:50%;z-index:-1;opacity:.55;pointer-events:none}
+.p1{width:130px;height:130px;right:-35px;top:14%;background:radial-gradient(circle at 30% 30%,#ffb38a,#c45a8f 70%);animation:float 9s ease-in-out infinite}
+.p2{width:80px;height:80px;left:-20px;bottom:12%;background:radial-gradient(circle at 30% 30%,#9ff0e0,#3f7fb8 70%);animation:float 11s ease-in-out infinite reverse}
+@keyframes float{50%{transform:translateY(-22px)}}
+.star{position:fixed;color:#fff;pointer-events:none;z-index:-1;animation:tw 2s infinite alternate}
+@keyframes tw{from{opacity:.2;transform:scale(.8)}to{opacity:1;transform:scale(1.2)}}
+
+/* Tata letak umum */
+.container{width:min(960px,92%);margin:auto;padding:22px 0 40px}
+header{text-align:center;margin-bottom:20px}
+h1{font-family:'Fredoka','Trebuchet MS',sans-serif;font-weight:700;font-size:clamp(36px,7vw,64px);margin:0;color:var(--gold);text-shadow:0 5px 0 #9b579e,0 9px 22px #0008;animation:drop .8s cubic-bezier(.3,1.4,.5,1)}
+@keyframes drop{from{transform:translateY(-40px) scale(.9);opacity:0}}
+.subtitle{color:#d9d5ff;margin-top:6px}
+.panel{background:#ffffff16;border:1px solid #ffffff35;backdrop-filter:blur(12px);border-radius:26px;padding:24px;box-shadow:0 15px 40px #0004;margin-bottom:18px}
+.hidden{display:none!important}
+.center{text-align:center}
+h2{font-family:'Fredoka',sans-serif;color:var(--gold);margin:0 0 8px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.stat{background:#ffffff18;padding:9px 15px;border-radius:14px;font-weight:800}
+
+/* Tombol */
+button{border:0;border-radius:14px;padding:12px 18px;font:inherit;font-weight:800;cursor:pointer;background:var(--gold);color:var(--ink);transition:transform .2s,filter .2s}
+button:hover:not(:disabled){transform:translateY(-3px);filter:brightness(1.08)}
+button:focus-visible{outline:3px solid #fff;outline-offset:2px}
+button:disabled{opacity:.5;cursor:not-allowed}
+.secondary{background:var(--violet)}
+.green{background:var(--mint)}
+
+/* Layar awal */
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:left;margin-top:10px}
+.how div{background:#ffffff12;border-radius:16px;padding:12px 14px;font-size:14px}
+
+/* Progres dan timer */
+.progress,.timer{height:12px;background:#ffffff25;border-radius:20px;overflow:hidden;margin:12px 0}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--pink));transition:width .4s}
+.timer{height:9px}
+.timer i{display:block;height:100%;width:100%;background:var(--mint);transition:width .1s linear,background .3s}
+
+/* Roda */
+.game-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center}
+.wheel-area{text-align:center}
+.pointer{font-size:36px;color:var(--gold);margin-bottom:-24px;position:relative;z-index:2;text-shadow:0 3px 6px #0006;transform-origin:50% 25%}
+.wheel-wrap{position:relative;width:min(300px,72vw);margin:24px auto}
+.wheel{width:100%;aspect-ratio:1;border-radius:50%;margin:0;border:9px solid var(--gold);position:relative;box-shadow:0 0 34px #b99aff88;transition:transform 4s cubic-bezier(.1,.75,.12,1);
+background:conic-gradient(#ff8caa 0 60deg,#9e8cff 60deg 120deg,#63d9d0 120deg 180deg,#ffca70 180deg 240deg,#80a9ff 240deg 300deg,#dc91ff 300deg 360deg)}
+.wheel i{position:absolute;inset:0}
+.wheel b{position:absolute;top:9%;left:50%;transform:translateX(-50%);font-size:32px;font-weight:800;text-shadow:0 2px 5px #0006}
+.wheel::after{content:"✦";position:absolute;inset:0;margin:auto;width:56px;height:56px;border-radius:50%;background:#fff;color:#6a4a9c;display:grid;place-items:center;font-size:28px;box-shadow:0 3px 10px #0005}
+#wheelMessage{min-height:24px;font-weight:800;color:#d9d5ff}
+
+/* Lampu dan efek saat roda berputar */
+.lights{position:absolute;inset:0;pointer-events:none}
+.lights u{position:absolute;inset:-16px}
+.lights s{position:absolute;top:0;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:#fff6c9;box-shadow:0 0 10px var(--gold),0 0 18px #ffb347;opacity:.85}
+.lights u:nth-child(odd) s{animation-delay:.11s!important}
+.spin .lights s{animation:blink .22s infinite alternate}
+.spin .wheel{box-shadow:0 0 60px #ffe27acc,0 0 100px #ff8caa88}
+.wheel-area:has(.spin) .pointer{animation:wig .12s infinite alternate}
+@keyframes blink{from{opacity:.2}to{opacity:1}}
+@keyframes wig{to{transform:rotate(-16deg)}}
+
+/* Simbol besar saat roda berhenti */
+.reveal{position:absolute;inset:0;display:grid;place-items:center;font-family:'Fredoka',sans-serif;font-size:130px;font-weight:700;color:#fff;text-shadow:0 0 30px var(--gold),0 6px 0 #9b579e;pointer-events:none;opacity:0}
+.reveal.show{animation:rev 1.5s ease-out}
+@keyframes rev{0%{opacity:0;transform:scale(.2) rotate(-40deg)}25%{opacity:1;transform:scale(1.25)}70%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.6)}}
+
+/* Soal dan jawaban */
+.cat{display:inline-block;background:#ffffff1c;border-radius:20px;padding:5px 14px;font-weight:800;font-size:14px;margin-bottom:8px}
+.question{font-family:'Fredoka',sans-serif;font-size:clamp(24px,4vw,34px);font-weight:500;min-height:80px;display:flex;align-items:center;margin:4px 0}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.answer{background:#ffffff20;color:#fff;border:2px solid #ffffff35;font-size:18px;padding:14px}
+.answer.correct{background:#43c995;color:#123b35;animation:pop .4s}
+.answer.wrong{background:#ff7895;color:#542036;animation:shake .4s}
+@keyframes pop{50%{transform:scale(1.07)}}
+@keyframes shake{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.feedback{min-height:48px;margin-top:14px;font-weight:800}
+.controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+
+/* Layar hasil */
+.big-score{font-family:'Fredoka',sans-serif;font-size:72px;font-weight:700;color:var(--mint)}
+.facts{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:14px 0 20px}
+
+/* Konfeti dan footer */
+.confetti{position:fixed;top:-20px;font-size:22px;pointer-events:none;z-index:50;animation:fall 2.2s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg);opacity:.2}}
+footer{text-align:center;color:#c9c3e9;font-size:13px;margin-top:20px}
+
+/* Responsif dan aksesibilitas */
+@media(max-width:700px){.game-grid,.how{grid-template-columns:1fr}.panel{padding:18px}.big-score{font-size:56px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
